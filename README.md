@@ -38,72 +38,92 @@ _all code used for the pipeline can be found under "matrices-computation.py"_
 
 
   </details>
-
   <details>
     <summary>K-mer Parsing</summary>
 
-    Process:
-    - FASTA sequences are read and split into k-mers
-    - K-mer counts are recorded
-    - non-nucleotide characters are ignored
+Each sequence is parsed into overlapping k-mers of a specified size.
 
-    Output:
-    - dictionary containing k-mer counts for each sequence
+Tools used:
+- custom Python parser
+
+Process:
+- FASTA sequences are read
+- sequences are split into k-mers
+- k-mer counts are recorded
+- non-nucleotide characters are ignored
+
+Output:
+- dictionary containing k-mer counts for each sequence
 
   </details>
 
   <details>
     <summary>K-mer Normalization</summary>
 
-    Purpose:
-    - standardizes comparisons across sequences
-    - prevents bias due to sequence length differences
+K-mer counts are normalized by dividing each k-mer count by the total number of k-mers in the sequence.
 
-    Output:
-    - normalized k-mer frequency dictionary
+Purpose:
+- standardizes comparisons across sequences
+- prevents bias due to sequence length differences
+
+Output:
+- normalized k-mer frequency dictionary
 
   </details>
 
   <details>
-    <summary>Distance Matrix Computation</summary>
+    <summary>Distance Matrix Calculations</summary>
 
-    Distance Metrics Implemented:
-    - Euclidean Distance
-    - Manhattan Distance
-    - Cosine Dissimilarity
-    - Jaccard Dissimilarity
+Several distance metrics are calculated to compare sequences.
 
-    Output:
-    - dm_output.tsv - containing pairwise sequence comparisons
+Tools used:
+- custom Python functions
 
-    These metric quantify sequence similarity using either frequency-based or prescence/abscence based comparisons. 
+Distance metrics implemented:
 
+- **Euclidean distance**
+- **Manhattan distance**
+- **Cosine dissimilarity**
+- **Jaccard dissimilarity**
+
+These metrics quantify sequence similarity using either frequency-based or presence/absence-based comparisons.
+
+Output:
+- `dm_output.tsv` containing pairwise sequence comparisons
 
   </details>
 
   <details>
     <summary>Pairwise Comparison Table</summary>
 
-    A cosine distance matrix is generated for all sequences
-    Tools used: pandas
+A cosine distance matrix is generated for all sequences.
 
-    Output: pairwise_compare.tsv
-    This table shows the cosine dissimilarity between every pair of sequences.
+Tools used:
+- pandas
+
+Output:
+- `pairwise_compare.tsv`
+
+This table shows the cosine dissimilarity between every pair of sequences.
 
   </details>
 
   <details>
     <summary>Heatmap Visualization</summary>
 
-    A heatmap visualization is generated from the pair-wise cosine distance matrix.
-    Tools used:
-    - seaborn
-    - matplotlib
+A heatmap visualization is generated from the pairwise cosine distance matrix.
 
-    Output: heatmap.png
-    This heatmap visually represents similarity relationships between sequences. 
+Tools used:
+- seaborn
+- matplotlib
+
+Output:
+- `heatmap.png`
+
+This heatmap visually represents similarity relationships between sequences.
 
   </details>
+
   <details>
     <summary>Principal Component Analysis (PCA)</summary>
 
@@ -122,6 +142,7 @@ The PCA plot shows how sequences cluster based on k-mer composition.
   </details>
 
 </details>
+
 <details>
   <summary><strong>Results</strong></summary>
 
@@ -134,6 +155,7 @@ Table containing Euclidean, Manhattan, Cosine, and Jaccard distances between all
 
 ### Pairwise Comparison Table
 `pairwise_compare.tsv`
+
 Cosine distance matrix comparing all sequences.
 
 ### Heatmap
@@ -152,5 +174,4 @@ Scatter plot showing clustering patterns among sequences based on k-mer frequenc
 Table containing k-mer counts for each sequence used for PCA analysis.
 
 </details>
-
 
